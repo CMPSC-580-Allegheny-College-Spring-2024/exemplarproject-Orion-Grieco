@@ -2,3 +2,4 @@
   - ex.: Fact to evaluate: Mitochondria is responsible for cellular respiration.
   - ex.: Keywords -> ["Mitochondria","is","responsible]
   - Look for sentences containing said keywords to evaluate the fact in question.
+- https://www.machinelearningplus.com/nlp/gensim-tutorial/
