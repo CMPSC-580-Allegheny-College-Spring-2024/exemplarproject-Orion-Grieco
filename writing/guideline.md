@@ -1,0 +1,4 @@
+- Pull out sentences with specific keywords to analyze
+  - ex.: Fact to evaluate: Mitochondria is responsible for cellular respiration.
+  - ex.: Keywords -> ["Mitochondria","is","responsible]
+  - Look for sentences containing said keywords to evaluate the fact in question.
