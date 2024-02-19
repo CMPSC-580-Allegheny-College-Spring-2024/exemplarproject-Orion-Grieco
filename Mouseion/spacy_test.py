@@ -5,6 +5,8 @@ import nltk.data
 from nltk.corpus import treebank
 import os
 import re
+import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup as beau
 nlp = spacy.load("en_core_web_sm")
 
 # Creating stopword list:       
@@ -17,6 +19,8 @@ file_path = os.path.join(data_folder, filename)
 
 file = open(file_path, 'r+', encoding = "utf-8")
 file = re.sub(u"[^\x01-\x7f]+",u"",file.read())
+# removing stop words
+filtered_text = " ".join([word for word in file.split() if word not in stopwords])
 
 '''
 token_file = nlp(file)
@@ -24,11 +28,19 @@ with(open("token_pages.txt", "w+")) as myfile:
         for token in token_file:
                 myfile.write(f"{token.text}, {token.has_vector}, {token.vector_norm}, {token.is_oov}" + "\n")
 '''
-print(f"File Name and Path : {filename} : {file}")
-comparison_text = input("Enter text to compare to the article: ")
-comparing_text_doc = nlp(comparison_text)
-base_doc = nlp(file)
-print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
+tree = ET.fromstring(filtered_text)
+notags = ET.tostring(tree, encoding='utf8', method='text')
 
-#print(filename)
-#print([token.text for token in introduction_doc])
+soup = beau(filtered_text, "html.parser")
+for data in soup(['style', 'script']):
+        data.decompose()
+text = soup.get_text()
+
+#print(f"File Name and Path : {filename} : {notags} + \n")
+#comparison_text = input("Enter text to compare to the article: ")
+#comparing_text_doc = nlp(comparison_text)
+#base_doc = nlp(notags)
+#print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
+
+
+
