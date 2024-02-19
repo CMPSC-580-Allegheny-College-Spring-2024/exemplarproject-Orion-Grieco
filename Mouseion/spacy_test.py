@@ -36,11 +36,11 @@ for data in soup(['style', 'script']):
         data.decompose()
 text = soup.get_text()
 
-#print(f"File Name and Path : {filename} : {notags} + \n")
-#comparison_text = input("Enter text to compare to the article: ")
-#comparing_text_doc = nlp(comparison_text)
-#base_doc = nlp(notags)
-#print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
+print(f"File Name and Path : {filename} : {text} + \n")
+comparison_text = input("Enter text to compare to the article: ")
+comparing_text_doc = nlp(comparison_text)
+base_doc = nlp(text)
+print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
 
 
 
