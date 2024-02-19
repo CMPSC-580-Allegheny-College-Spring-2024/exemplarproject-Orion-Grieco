@@ -4,6 +4,9 @@
   - ex.: Keywords -> ["Mitochondria","is","responsible]
   - Look for sentences containing said keywords to evaluate the fact in question.
   - Filter down files if multiple results returned (many files with the same search term included)
+  - dictionary
+    - key: filename(OR PMID Number of Article)
+    - value: score
   
 ## Resources/Links
 - https://www.machinelearningplus.com/nlp/gensim-tutorial/
