@@ -37,7 +37,7 @@ for filename in os.scandir(data_folder):
     similarity_matrix = dict({f'User Input: {comparison_text} + {filename}': base_doc.similarity(comparing_text_doc)})
     
     with(open("sim_matrix_results.txt", "a+")) as file:
-        file.write(str(similarity_matrix)+ "\n")
+        file.write(f"{similarity_matrix}" + "\n")
     #print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
 
 
