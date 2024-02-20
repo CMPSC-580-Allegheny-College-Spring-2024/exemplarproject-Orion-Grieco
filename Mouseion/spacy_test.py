@@ -22,13 +22,6 @@ file = re.sub(u"[^\x01-\x7f]+",u"",file.read())
 # removing stop words
 filtered_text = " ".join([word for word in file.split() if word not in stopwords])
 
-'''
-token_file = nlp(file)
-with(open("token_pages.txt", "w+")) as myfile:
-        for token in token_file:
-                myfile.write(f"{token.text}, {token.has_vector}, {token.vector_norm}, {token.is_oov}" + "\n")
-'''
-
 soup = beau(filtered_text, "html.parser")
 for data in soup(['style', 'script']):
         data.decompose()
