@@ -28,8 +28,6 @@ with(open("token_pages.txt", "w+")) as myfile:
         for token in token_file:
                 myfile.write(f"{token.text}, {token.has_vector}, {token.vector_norm}, {token.is_oov}" + "\n")
 '''
-tree = ET.fromstring(filtered_text)
-notags = ET.tostring(tree, encoding='utf8', method='text')
 
 soup = beau(filtered_text, "html.parser")
 for data in soup(['style', 'script']):
