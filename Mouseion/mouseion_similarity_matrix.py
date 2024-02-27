@@ -51,15 +51,18 @@ for filename in os.scandir(data_folder):
     # Creating a dictionary for the similarity matrix
             temp_matrix = dict(INPUT= comparison_text,
             PMID= dict_obj["pmid"],
-            SIM_SCORE = base_doc.similarity(comparing_text_doc))
-            summative_dict.update(temp_matrix)
+            SIM_SCORE = base_doc.similarity(comparing_text_doc),
+            INTEGRITY = "VALID")
+            with(open("sim_matrix_results.json", "a+")) as file:
+                file.write(f"{temp_matrix}"+ "\n")
     else:
         invalid_counter += 1
         temp_matrix = dict(INPUT= comparison_text,
         PMID = float("Nan"), 
-        SIM_SCORE = base_doc.similarity(comparing_text_doc))
+        SIM_SCORE = base_doc.similarity(comparing_text_doc),
+        INTEGRITY = "INVALID")
         with(open("sim_matrix_results.json", "a+")) as file:
-            file.write(f"{temp_matrix}")
+            file.write(f"{temp_matrix}"+"\n")
     #print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
 
 
