@@ -1,10 +1,7 @@
-import random
 import spacy #type: ignore
-import nltk
-import nltk.data
-from nltk.corpus import treebank
 import os
-import re
+import pubmed_parser
+from pubmed_parser import parse_pubmed_caption
 import pandas as pd
 from glob import glob
 from bs4 import BeautifulSoup as beau
@@ -15,20 +12,23 @@ stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
 data_folder = "PMC001xxxxxx/"
 comparison_text = input("Enter text to compare to the article: ")
+"""
+for word in comparison_text.split():
+    print(word)
+"""
 
-
+summative_dict = {}
 for filename in os.scandir(data_folder):
     #print(filename)
     #file_path = os.path.join(data_folder, filename)
 
     open_file = open(filename.path, 'r+', encoding = "utf-8")
-    open_file = re.sub(u"[^\x01-\x7f]+",u"",open_file.read())
+    prep_file = open_file.read()
 
-    pmid_soup = beau(open_file,'lxml')
-    pmid_val = pmid_soup.find('pub-id', attrs={'pub-id-type': 'pmid'}).text
-
+    pmid_soup = beau(prep_file,'lxml')
+    pmid_val = pubmed_parser.parse_pubmed_caption(prep_file)
     # removing stop words
-    filtered_text = " ".join([word for word in open_file.split() if word not in stopwords])
+    filtered_text = " ".join([word for word in prep_file.split() if word not in stopwords])
 
     soup = beau(filtered_text, "html.parser")
     for data in soup(['style', 'script']):
@@ -40,13 +40,16 @@ for filename in os.scandir(data_folder):
     
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
-    
+    for dict_obj in pmid_val:
     # Creating a dictionary for the similarity matrix
-    similarity_matrix = dict({f"User Input: {comparison_text} + ARTICLE: {filename} + PMID :{pmid_val}": base_doc.similarity(comparing_text_doc)})
-    
-    with(open("sim_matrix_results.txt", "a+")) as file:
-        file.write(f"{similarity_matrix}" + "\n")
+        similarity_matrix = dict(INPUT= comparison_text,
+        ARTICLE= {filename},
+        PMID= dict_obj["pmid"],
+        SIM_SCORE = base_doc.similarity(comparing_text_doc))
+        
+        
+        
+        summative_dict.update(similarity_matrix)
     #print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
-
-
-
+with(open("sim_matrix_results.json", "a+")) as file:
+        file.write(f"{summative_dict}")
