@@ -16,10 +16,9 @@ comparison_text = input("Enter text to compare to the article: ")
 for word in comparison_text.split():
     print(word)
 """
-all_found = 0
-partly_found = 0
+found_key_words = 0
 summative_dict = {}
-for filename in open(data_folder):
+for filename in os.scandir(data_folder):
     #print(filename)
     #file_path = os.path.join(data_folder, filename)
 
@@ -44,8 +43,9 @@ for filename in open(data_folder):
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
     for word in comparison_text.split():
-        if sum(word in text) == 2:
-            partly_found += 1
+        if word in text:
+            found_key_words += 1
+        if found_key_words == 2:
             if type(pmid_val) == list:
                 valid_counter += 1
                 for dict_obj in pmid_val:
@@ -65,8 +65,7 @@ for filename in open(data_folder):
             with(open("sim_matrix_results.json", "a+")) as file:
                 file.write(f"{temp_matrix}"+"\n")
         
-        if sum(word in text) == len(comparison_text.split()):
-            all_found += 1
+        if found_key_words == len(comparison_text.split()):
             if type(pmid_val) == list:
                 valid_counter += 1
                 for dict_obj in pmid_val:
