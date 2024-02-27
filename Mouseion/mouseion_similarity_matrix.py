@@ -26,7 +26,10 @@ for filename in os.scandir(data_folder):
     prep_file = open_file.read()
 
     pmid_soup = beau(prep_file,'lxml')
-    pmid_val = pubmed_parser.parse_pubmed_caption(prep_file)
+    try:
+        pmid_val = pubmed_parser.parse_pubmed_caption(prep_file)
+    except:
+        pmid_val = "Nan"
     # removing stop words
     filtered_text = " ".join([word for word in prep_file.split() if word not in stopwords])
 
@@ -34,22 +37,29 @@ for filename in os.scandir(data_folder):
     for data in soup(['style', 'script']):
             data.decompose()
     text = soup.get_text()
-    
+    valid_counter = 0
+    invalid_counter = 0
 
     #print(f"File Name and Path : {filename} : {text} + \n")
     
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
-    for dict_obj in pmid_val:
+    print(type(pmid_val), filename)
+    if type(pmid_val) == list:
+        valid_counter += 1
+        for dict_obj in pmid_val:
     # Creating a dictionary for the similarity matrix
-        similarity_matrix = dict(INPUT= comparison_text,
-        ARTICLE= {filename},
-        PMID= dict_obj["pmid"],
+            temp_matrix = dict(INPUT= comparison_text,
+            PMID= dict_obj["pmid"],
+            SIM_SCORE = base_doc.similarity(comparing_text_doc))
+            summative_dict.update(temp_matrix)
+    else:
+        invalid_counter += 1
+        temp_matrix = dict(INPUT= comparison_text,
+        PMID = float("Nan"), 
         SIM_SCORE = base_doc.similarity(comparing_text_doc))
-        
-        
-        
-        summative_dict.update(similarity_matrix)
+        with(open("sim_matrix_results.json", "a+")) as file:
+            file.write(f"{temp_matrix}")
     #print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
-with(open("sim_matrix_results.json", "a+")) as file:
-        file.write(f"{summative_dict}")
+
+
