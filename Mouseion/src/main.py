@@ -10,7 +10,7 @@ nlp = spacy.load("en_core_web_sm")
 # Creating stopword list:       
 stopwords = spacy.lang.en.stop_words.STOP_WORDS
 
-data_folder = "Mouseion/data/PMC001xxxxxx"
+data_folder = "data/PMC001xxxxxx"
 comparison_text = input("Enter text to compare to the article: ")
 """
 for word in comparison_text.split():
