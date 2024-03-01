@@ -17,7 +17,10 @@ for word in comparison_text.split():
     print(word)
 """
 
-summative_dict = {}
+valid = 0
+invalid = 0
+success = []
+failure = []
 for filename in os.scandir(data_folder):
     #print(filename)
     #file_path = os.path.join(data_folder, filename)
@@ -37,32 +40,31 @@ for filename in os.scandir(data_folder):
     for data in soup(['style', 'script']):
             data.decompose()
     text = soup.get_text()
-    valid_counter = 0
-    invalid_counter = 0
 
     #print(f"File Name and Path : {filename} : {text} + \n")
-    
+    pmid_val = parse_medline_grant_id(text)
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
     print(type(pmid_val), filename)
-    if type(pmid_val) == list:
-        valid_counter += 1
-        for dict_obj in pmid_val:
-    # Creating a dictionary for the similarity matrix
-            temp_matrix = dict(INPUT= comparison_text,
-            PMID= dict_obj["pmid"],
-            SIM_SCORE = base_doc.similarity(comparing_text_doc),
-            INTEGRITY = "VALID")
-            with(open("sim_matrix_results.json", "a+")) as file:
-                file.write(f"{temp_matrix}"+ "\n")
-    else:
-        invalid_counter += 1
-        temp_matrix = dict(INPUT= comparison_text,
-        PMID = float("Nan"), 
-        SIM_SCORE = base_doc.similarity(comparing_text_doc),
-        INTEGRITY = "INVALID")
-        with(open("sim_matrix_results.json", "a+")) as file:
-            file.write(f"{temp_matrix}"+"\n")
+        try:
+            for dict_obj in pmid_val:
+        # Creating a dictionary for the similarity matrix
+                temp_matrix = dict(INPUT= comparison_text,
+                PMID= dict_obj["pmid"],
+                SIM_SCORE = base_doc.similarity(comparing_text_doc))
+                with(open("sim_matrix_results.json", "a+")) as file:
+                    file.write(f"{temp_matrix}"+ "\n")
+                    success.append(filename)
+                    valid += 1
+        except:
+            failure.append(filename)
+            invalid +=1
+            yield
     #print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
-
-
+print(f"Out of {valid+invalid} files, \n {valid} were successfully parsed \n {invalid} were unable to be parsed")
+with(open("data/failed_entries.txt")) as f_file:
+    for item in failure:
+        f_file.write(item + "\n")
+with(open("data/successful_entries.txt")) as s_file:
+    for item in success:
+        s_file.write(item + "\n")
