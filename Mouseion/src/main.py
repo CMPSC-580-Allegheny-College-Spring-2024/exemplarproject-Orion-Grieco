@@ -4,6 +4,7 @@ import pubmed_parser
 import pandas as pd
 from glob import glob
 from bs4 import BeautifulSoup as beau
+
 nlp = spacy.load("en_core_web_sm")
 
 # Creating stopword list:
@@ -22,8 +23,6 @@ temp_dict = {}
 data_list = []
 summative_score = 0
 for filename in os.scandir(data_folder):
-    # print(filename)
-    # file_path = os.path.join(data_folder, filename)
 
     open_file = open(filename.path, "r+", encoding="utf-8")
     prep_file = open_file.read()
@@ -46,23 +45,19 @@ for filename in os.scandir(data_folder):
 
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
-    try:
-    #print(pmid_val[0]["pmid"])
 
-            summative_score += float(dict_obj["pmid"])
-            # Creating a dictionary for the similarity matrix
-            temp_dict = {
-                "INPUT":comparison_text,
-                "PMID":dict_obj["pmid"],
-                "SIM_SCORE":base_doc.similarity(comparing_text_doc),
-                }
-            data_list.append(f"{temp_dict}" + "\n")
-            print(data_list, "@")
-    except:
-        break
-        #print(data_list, "@")
-data_set = set(data_list)
-with open("sim_matrix_results.json", "w+") as file:
-    file.write(f"{dict(data_set)}" + "\n")
+        # Creating a dictionary for the similarity matrix
+    temp_dict = {
+        "INPUT": comparison_text,
+        "PMID": pmid_val[0]["pmid"], #type: ignore
+        "SIM_SCORE": base_doc.similarity(comparing_text_doc),
+    }
+    summative_score += float(temp_dict["SIM_SCORE"])
+    data_list.append(temp_dict)
+    with open("sim_matrix_results.json", "a+") as file:
+        file.write(f"{data_list}" + "\n")
+
+    # print(data_list, "@")
+
 
 # print(comparison_text, "<->", filename, base_doc.similarity(comparing_text_doc))
