@@ -16,24 +16,18 @@ comparison_text = input("Enter text to compare to the article: ")
 for word in comparison_text.split():
     print(word)
 """
-wiped_file = open("sim_matrix_results.json", "w")
-wiped_file.truncate()
-wiped_file.close()
+
+
 temp_dict = {}
 data_list = []
 summative_score = 0
 for filename in os.scandir(data_folder):
-
-    open_file = open(filename.path, "r+", encoding="utf-8")
-    prep_file = open_file.read()
-
+    prep_file = open(filename.path,"r").read()
     pmid_soup = beau(prep_file, "lxml")
+    pmid_soup = list(pmid_soup)
+    #print(pubmed_parser.parse_pubmed_caption(open_file.read()))
 
-    try:
-        pmid_val = pubmed_parser.parse_pubmed_caption(prep_file)
-    except:
-        pass
-    # removing stop wordsa
+    # removing stop words
     filtered_text = " ".join(
         [word for word in prep_file.split() if word not in stopwords]
     )
@@ -43,19 +37,25 @@ for filename in os.scandir(data_folder):
         data.decompose()
     text = soup.get_text()
 
+
     comparing_text_doc = nlp(comparison_text)
     base_doc = nlp(text)
-
-        # Creating a dictionary for the similarity matrix
-    temp_dict = {
+    # Creating a dictionary for the similarity matrix
+    try: temp_dict = {
         "INPUT": comparison_text,
-        "PMID": pmid_val[0]["pmid"], #type: ignore
+        "PMID": pubmed_parser.parse_pubmed_caption(prep_file)[0]["pmid"], #pubmed_parser.parse_pubmed_caption(soup)[0]["pmid"], #type: ignore
+        "SIM_SCORE": base_doc.similarity(comparing_text_doc),
+    }
+    except: temp_dict = {
+        "INPUT": comparison_text,
+        "PMID": "N/A", #pubmed_parser.parse_pubmed_caption(soup)[0]["pmid"], #type: ignore
         "SIM_SCORE": base_doc.similarity(comparing_text_doc),
     }
     summative_score += float(temp_dict["SIM_SCORE"])
     data_list.append(temp_dict)
-    with open("sim_matrix_results.json", "a+") as file:
-        file.write(f"{data_list}" + "\n")
+with open("sim_matrix_results.json", "w+") as file:
+    for item in data_list:
+        file.write(f"{item}" + "\n")
 
     # print(data_list, "@")
 
