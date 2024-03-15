@@ -23,8 +23,6 @@ data_list = []
 summative_score = 0
 for filename in os.scandir(data_folder):
     prep_file = open(filename.path,"r").read()
-    pmid_soup = beau(prep_file, "lxml")
-    pmid_soup = list(pmid_soup)
     #print(pubmed_parser.parse_pubmed_caption(open_file.read()))
 
     # removing stop words
