@@ -40,8 +40,7 @@ TODO: Discuss the methods of the project to be able to answer the `how` question
   * The NLP model estimates a simlarity matrix score based on the user input's accuracy relative to the content of the article it parses through.
   * The program will then take these two results obtained by the NLP, as well as the user fed input, and create a dictionary object of these three attributes for each of the articles within the corpus.
   * The data is then stored within a JSON file.
-* Over all the iterations, the shared functionality was an automated systwem that would parse through each article in an established corpus, and find the PubMed ID of each article by pruning through the PubMed ID numbers found in each article in order to find the actual ID number of the article being analyzed.
-  * Beyond this, the algorithm functions as a whole by creating a dictionary object of each article that it parses through. The dictionary object
+* Over all the iterations, the shared functionality was an automated system via an NLP model that would parse through each article in an established corpus, and calculate a similarity matrix score relative to the user input as it was determined to be found in the article. The introduction of parsing the article to find its respective PubMed ID brought along the use of SpaCy, as it seemed the majority of Gensim APIs I had found were all outdated or deprecated, despite being less than a year old at most
 
 ## Using the Artifact
 
