@@ -1,8 +1,6 @@
 import spacy  # type: ignore
 import os
 import pubmed_parser
-import pandas as pd
-from glob import glob
 from bs4 import BeautifulSoup as beau
 
 nlp = spacy.load("en_core_web_sm")

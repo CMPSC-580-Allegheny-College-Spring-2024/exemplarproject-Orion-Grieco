@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/Y4rZMh1t)
+
 # Junior Seminar (CMPSC 580) Exemplar Project Repository
 
 ## Semester: Spring 2024
@@ -20,9 +21,7 @@ Here, think of an interesting name of the work that bring a freshness and excite
 ## Overview
 
 - The project itself (Mouseion) works as a fact-checker to compare user-inputted text entries to a corpus of varying documents. The program itself works by first iterating through a corpus of several documents. As the AI model iterates through each document, it estimates a value based off of a similarity matrix that compares the content of the article and the user-inputted entry(ies), and returns the aforementioned similarity matrix value. This value serves as a score of how verifiable the input is relative to the content of the article. The end result of the program is that it will return the PMID value and similarity matrix value of each article within the corpus. The results will also be contained within a JSON file. The machine learning model will also prune duplicate values, as it is converted into a set before it is written into the JSON file container, thus effectively removing any duplicate values thay may persist through parsing the initial articles or corresponding files.
-
-- The main hypothesis of this project is that the AI model can predict similarity matrix scores with some accuracy, but may be subject to an inherent bias, or is at least not as accurate as initially presumed. 
-
+- The main hypothesis of this project is that the AI model can predict similarity matrix scores with some accuracy, but may be subject to an inherent bias, or is at least not as accurate as initially presumed.
 - The significance of this project serves to test AI, machine learning, and the aspect of fact-checking. As it stands, the age of misinformation is well and alive, and this serves as a proof-of-concept to combat this issue. Using AI and machine learning, we can work towards a means of accurately determining or interpreting data and articles through something as simple as a few keywords.
 
 ## Literature Review
@@ -32,6 +31,17 @@ TODO: Conduct literature review by describing relevant work related to the proje
 ## Methods
 
 TODO: Discuss the methods of the project to be able to answer the `how` question (`how was this project completed?`). The methods section in an academic research outlines the specific procedures, techniques, and methodologies employed to conduct the study, offering a transparent and replicable framework for the research. It details the resources behind the work, in terms of, for example, the design of the algorithm and the experiment(s), data collection methods, applied software libraries, required tools, the types of statistical analyses and models which are applied to ensure the rigor and validity of the study. This section provides clarity for other researchers to understand and potentially replicate the study, contributing to the overall reliability and credibility of the research findings.
+
+* The project went through several iterations, utilizing a mix of the NLP models Gensim, NLTK, and SpaCy. I believe I went through about 6 different versions before I arrived at the current one, which utilizes SpaCy, Beautiful Soup (BS4), and Pubmed Parser.
+* The current iteration functions as the following in the steps ordered:
+  * The user inputs a series of strings to compare to relative to the articles in the corpus of documents.
+  * The NLP model then begings to iteratively parse through each article within the corpus.
+  * The NLP model will pull the PubMed ID numer of the article it is parsing through.
+  * The NLP model estimates a simlarity matrix score based on the user input's accuracy relative to the content of the article it parses through.
+  * The program will then take these two results obtained by the NLP, as well as the user fed input, and create a dictionary object of these three attributes for each of the articles within the corpus.
+  * The data is then stored within a JSON file.
+* Over all the iterations, the shared functionality was an automated systwem that would parse through each article in an established corpus, and find the PubMed ID of each article by pruning through the PubMed ID numbers found in each article in order to find the actual ID number of the article being analyzed.
+  * Beyond this, the algorithm functions as a whole by creating a dictionary object of each article that it parses through. The dictionary object
 
 ## Using the Artifact
 
