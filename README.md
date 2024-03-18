@@ -32,19 +32,39 @@ TODO: Conduct literature review by describing relevant work related to the proje
 
 TODO: Discuss the methods of the project to be able to answer the `how` question (`how was this project completed?`). The methods section in an academic research outlines the specific procedures, techniques, and methodologies employed to conduct the study, offering a transparent and replicable framework for the research. It details the resources behind the work, in terms of, for example, the design of the algorithm and the experiment(s), data collection methods, applied software libraries, required tools, the types of statistical analyses and models which are applied to ensure the rigor and validity of the study. This section provides clarity for other researchers to understand and potentially replicate the study, contributing to the overall reliability and credibility of the research findings.
 
+### Method Overview
+
 * The project went through several iterations, utilizing a mix of the NLP models Gensim, NLTK, and SpaCy. I believe I went through about 6 different versions before I arrived at the current one, which utilizes SpaCy, Beautiful Soup (BS4), and Pubmed Parser.
+* Across all the iterations, the shared functionality was an automated system via an NLP model that would parse through each article in an established corpus, and calculate a similarity matrix score relative to the user input as it was determined to be found in the article. The introduction of parsing the article to find its respective PubMed ID brought along the use of SpaCy, as it seemed the majority of Gensim APIs I had found were all outdated or deprecated, despite being less than a year old at most.
+
+### Algorithm Design
+
 * The current iteration functions as the following in the steps ordered:
+
   * The user inputs a series of strings to compare to relative to the articles in the corpus of documents.
   * The NLP model then begings to iteratively parse through each article within the corpus.
   * The NLP model will pull the PubMed ID numer of the article it is parsing through.
   * The NLP model estimates a simlarity matrix score based on the user input's accuracy relative to the content of the article it parses through.
   * The program will then take these two results obtained by the NLP, as well as the user fed input, and create a dictionary object of these three attributes for each of the articles within the corpus.
   * The data is then stored within a JSON file.
-* Over all the iterations, the shared functionality was an automated system via an NLP model that would parse through each article in an established corpus, and calculate a similarity matrix score relative to the user input as it was determined to be found in the article. The introduction of parsing the article to find its respective PubMed ID brought along the use of SpaCy, as it seemed the majority of Gensim APIs I had found were all outdated or deprecated, despite being less than a year old at most
+
+### Required Tools
+
+* Pubmed Parser library (can be downloaded from the PubMed API)
+* SpaCy NLP Model
+* Beautiful Soup
+
+### Applied Software Libraries
+
+* Python default `os` library
 
 ## Using the Artifact
 
 TODO: The result of your work will be the delivery of some type of artifact which will likely contain software programming solutions (i.e., Python code, HTML pages, or similar). To allow the user to experience and execute your artifact, you must first explain how to set up the initial conditions to run or use the artifact. Be sure to offer explicit details and instructions regarding the installation of the necessary foundational libraries, drivers, external software projects, containers and similar types of tertiary software which are involved in executing your artifact. Once these initial software installations have been completed, then you are asked to offer the necessary instructions for actually executing the artifact. For this, please provide all command line parameters or associated bash commands for execution. Please remember that users are unwilling to "figure-out" how to use code in absence of the essential instructions concerning the execution of project artifacts.
+
+* The user will first cd into the directory `Mouseion/src.`
+* The user will then run the program via the terminal command `python main.py` or `python3 main.py` depending on their OS or Python version.
+* 
 
 ## Results and Outcomes
 
