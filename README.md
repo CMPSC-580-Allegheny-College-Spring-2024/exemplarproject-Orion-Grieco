@@ -38,6 +38,7 @@ TODO: Conduct literature review by describing relevant work related to the proje
   * The user inputs a series of strings to compare to relative to the articles in the corpus of documents.
   * The NLP model then begings to iteratively parse through each article within the corpus.
   * The NLP model will pull the PubMed ID numer of the article it is parsing through.
+  * BeautifulSoup it then used to strip the articles of all extraneous HTML and XML tags and characters. This newly stripped document is what it used in calcuating the similarity matrix score.
   * The NLP model estimates a simlarity matrix score based on the user input's accuracy relative to the content of the article it parses through.
   * The program will then take these two results obtained by the NLP, as well as the user fed input, and create a dictionary object of these three attributes for each of the articles within the corpus.
   * The data is then stored within a JSON file.
@@ -78,6 +79,8 @@ TODO: Discuss the outcomes of your project in this section. Depending on the pro
 
 * An initial thought of improving the artifact would be to utilize a more versatile machine learning or NLP model that can determine more between the user input and article(s) rather than a direct correlation based upon a relative similarity.
   * An ideal enhancement for this idea would to be to search for either a phrase (or a string within an article that matches the user-inputted phrase as close as possible), or a set of keywords.
+  * Another enhancement in kind to this general notion would be to utilize a larger or more robust model as well to further support the accuracy of the similarity matrix scores, as well as improve the overall accuracy and general function of the model.
+* General research into interactions between models as well would be convenient, as to look for different ways to enhance the function of the artifact through "mixing and matching" of a multitude of packages, modules, or models altogether.
 
 ---
 
