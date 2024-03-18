@@ -79,7 +79,8 @@ TODO: Conduct literature review by describing relevant work related to the proje
   * An ideal enhancement for this idea would to be to search for either a phrase (or a string within an article that matches the user-inputted phrase as close as possible), or a set of keywords.
   * Another enhancement in kind to this general notion would be to utilize a larger or more robust model as well to further support the accuracy of the similarity matrix scores, as well as improve the overall accuracy and general function of the model.
 * General research into interactions between models as well would be convenient, as to look for different ways to enhance the function of the artifact through "mixing and matching" of a multitude of packages, modules, or models altogether.
-* The artifact could also be tweaked to be used in a financial setting, where it could
+* The artifact could also be tweaked to be used in a financial setting, where it could be tweaked to additionally search for specific financial trends, terms, or figures.
+  * To further branch off of this, it could be paired with a visual/image analysis model to further analyze visual components of articles or documents, especially in this realm, and even make predictions relative to the visual, given it has been provided data concerning the visual that it is analyzing.
 
 ### Capabilities and Applications of the Artifact
 
