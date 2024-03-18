@@ -72,6 +72,12 @@ TODO: Discuss the outcomes of your project in this section. Depending on the pro
 ### End Result of Project
 
 * Overall, the project was somewhat tedious, in terms of finding a viable format to create this project. The majority of Gensim was unreliable, as I was regularly finding out that the code I was working with utilized deprecated functions, that were replaced with less wieldy umbrella functions to take the place of multiple methods in some cases. This was even in spite of the tutorials I had followed being less than a year old, with seemingly large portions of the Gensim structure no longer being viable or usable as a whole.
+* The current function of the project is suitable for its intended purpose, though there can be improivements in the NLP and machine learning aspects of the artifact.
+
+### Proposed Enhancements
+
+* An initial thought of improving the artifact would be to utilize a more versatile machine learning or NLP model that can determine more between the user input and article(s) rather than a direct correlation based upon a relative similarity.
+  * An ideal enhancement for this idea would to be to search for either a phrase (or a string within an article that matches the user-inputted phrase as close as possible), or a set of keywords.
 
 ---
 
