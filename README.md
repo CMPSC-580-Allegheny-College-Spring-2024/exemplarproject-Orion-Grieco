@@ -68,8 +68,6 @@ TODO: Conduct literature review by describing relevant work related to the proje
 
 ## Results and Outcomes
 
-TODO: Discuss the outcomes of your project in this section. Depending on the project type, the presented results and outcomes will vary. In some projects, you will be asked to present a theoretical analysis, and in others your experimental study and its results. In this section, you are also to demonstrate an enhanced version of your artifact by showing its capabilities and applications, in light of the evaluation metrics for assessing the artifact
-
 ### End Result of Project
 
 * Overall, the project was somewhat tedious, in terms of finding a viable format to create this project. The majority of Gensim was unreliable, as I was regularly finding out that the code I was working with utilized deprecated functions, that were replaced with less wieldy umbrella functions to take the place of multiple methods in some cases. This was even in spite of the tutorials I had followed being less than a year old, with seemingly large portions of the Gensim structure no longer being viable or usable as a whole.
@@ -81,6 +79,12 @@ TODO: Discuss the outcomes of your project in this section. Depending on the pro
   * An ideal enhancement for this idea would to be to search for either a phrase (or a string within an article that matches the user-inputted phrase as close as possible), or a set of keywords.
   * Another enhancement in kind to this general notion would be to utilize a larger or more robust model as well to further support the accuracy of the similarity matrix scores, as well as improve the overall accuracy and general function of the model.
 * General research into interactions between models as well would be convenient, as to look for different ways to enhance the function of the artifact through "mixing and matching" of a multitude of packages, modules, or models altogether.
+* The artifact could also be tweaked to be used in a financial setting, where it could
+
+### Capabilities and Applications of the Artifact
+
+* The Artifact is effective in calculating similarity matrix scores between user input and an article.
+  * This gives some leeway to provide an application into the education or data science industries, where it could possibly be used to evaluate the viability of content within a file to deem it fit or otherwise unfit for analysis or consumption within the classroom. It could even be used in a financial setting, where it could further be used (given some probable tweaks or enhancements) to look for certain figures or notes within financial documents or visuals.
 
 ---
 
