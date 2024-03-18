@@ -10,13 +10,9 @@ This repository contains student project materials, including project report, da
 
 ## Name: Orion Grieco
 
-## Major: DS
+## Major: DS (Data Science)
 
 ## Project Name: Mouseion
-
-Here, think of an interesting name of the work that bring a freshness and excitement to the area of this project. Consider using a name that carries some information about what the project and provides some hint at what the project does without being too wordy.
-
----
 
 ## Overview
 
@@ -29,8 +25,6 @@ Here, think of an interesting name of the work that bring a freshness and excite
 TODO: Conduct literature review by describing relevant work related to the project and hence providing an overview of the state of the art in the area of the project. This section serves to contextualize the study within the existing body of literature, presenting a thorough review of relevant prior research and scholarly contributions. In clear and meaningful language, this section aims to demonstrate the problems, gaps, controversies, or unanswered questions that are associated with the current understanding of the topic. In addition, this section serves to highlight the current study's unique contribution to the field. By summarizing and critiquing existing works, this section provides a foundation for readers to appreciate the novelty and significance of the study in relation to the broader academic discourse. The "Literature Review" section further contributes to the `why is the project important?` question. The number of scholarly work included in the literature review may vary depending on the project.
 
 ## Methods
-
-TODO: Discuss the methods of the project to be able to answer the `how` question (`how was this project completed?`). The methods section in an academic research outlines the specific procedures, techniques, and methodologies employed to conduct the study, offering a transparent and replicable framework for the research. It details the resources behind the work, in terms of, for example, the design of the algorithm and the experiment(s), data collection methods, applied software libraries, required tools, the types of statistical analyses and models which are applied to ensure the rigor and validity of the study. This section provides clarity for other researchers to understand and potentially replicate the study, contributing to the overall reliability and credibility of the research findings.
 
 ### Method Overview
 
@@ -58,9 +52,12 @@ TODO: Discuss the methods of the project to be able to answer the `how` question
 
 * Python default `os` library
 
-## Using the Artifact
+### Analysis
 
-TODO: The result of your work will be the delivery of some type of artifact which will likely contain software programming solutions (i.e., Python code, HTML pages, or similar). To allow the user to experience and execute your artifact, you must first explain how to set up the initial conditions to run or use the artifact. Be sure to offer explicit details and instructions regarding the installation of the necessary foundational libraries, drivers, external software projects, containers and similar types of tertiary software which are involved in executing your artifact. Once these initial software installations have been completed, then you are asked to offer the necessary instructions for actually executing the artifact. For this, please provide all command line parameters or associated bash commands for execution. Please remember that users are unwilling to "figure-out" how to use code in absence of the essential instructions concerning the execution of project artifacts.
+* The algorithm utilizes a similarity matrix, in conjunction with word vectors and/or context-sensitive tensors. There are two models utilized within SpaCy in regard to word similarity/similarity matrices. The `en_core_web_sm` model utilizes tensors, while the `en_core_web_sm` model utilizes 1 million+ word vectors.
+* The similarity matrix score is a calculated value to represent the similarity between two inputs, in this case being the user-provided input and the article being evaluated. This score is being leveraged as a means to establish a user-digestable format of the accuracy of an article relative to the user input (how related the article is to the user-provided input on a scale of 0-1).
+
+## Using the Artifact
 
 * The user will first cd into the directory `Mouseion/src.`
 * The user will then run the program via the terminal command `python main.py` or `python3 main.py` depending on their OS or Python version.
@@ -71,6 +68,10 @@ TODO: The result of your work will be the delivery of some type of artifact whic
 ## Results and Outcomes
 
 TODO: Discuss the outcomes of your project in this section. Depending on the project type, the presented results and outcomes will vary. In some projects, you will be asked to present a theoretical analysis, and in others your experimental study and its results. In this section, you are also to demonstrate an enhanced version of your artifact by showing its capabilities and applications, in light of the evaluation metrics for assessing the artifact
+
+### End Result of Project
+
+* Overall, the project was somewhat tedious, in terms of finding a viable format to create this project. The majority of Gensim was unreliable, as I was regularly finding out that the code I was working with utilized deprecated functions, that were replaced with less wieldy umbrella functions to take the place of multiple methods in some cases. This was even in spite of the tutorials I had followed being less than a year old, with seemingly large portions of the Gensim structure no longer being viable or usable as a whole.
 
 ---
 
