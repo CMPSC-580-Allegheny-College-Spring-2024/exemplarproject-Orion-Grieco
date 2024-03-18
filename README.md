@@ -24,6 +24,13 @@ This repository contains student project materials, including project report, da
 
 TODO: Conduct literature review by describing relevant work related to the project and hence providing an overview of the state of the art in the area of the project. This section serves to contextualize the study within the existing body of literature, presenting a thorough review of relevant prior research and scholarly contributions. In clear and meaningful language, this section aims to demonstrate the problems, gaps, controversies, or unanswered questions that are associated with the current understanding of the topic. In addition, this section serves to highlight the current study's unique contribution to the field. By summarizing and critiquing existing works, this section provides a foundation for readers to appreciate the novelty and significance of the study in relation to the broader academic discourse. The "Literature Review" section further contributes to the `why is the project important?` question. The number of scholarly work included in the literature review may vary depending on the project.
 
+### Related Work(s)
+
+* Related work that operates in a simlar fashion (but not precisely) like the Mouseion artifact would be ChatGPT as a broad example. Yes, this model is versatile, but such models like ChatGPT are utilized in a similar manner by companies or even singular individuals alike to make predictions of information, generate calculations, or answer questions.
+  * One of the largest concerns with ChatGPT is the ethics behind the information used to train the AI model. In once instance for example, a user was able to break ChaptGPT by repeating the same prompt over and over, resulting in ChatGPT breaking down and actually returning bits of its training data to the user, which consisted of personal information of people such as their names, home addresses, phone numbers, emails, (etc.).
+* This brings up an issue of what information is to be used to train machine learning, AI, or NLP models, let alone the ethics behind obtaining information and utilizing it.
+* In the article *Natural Language Processing: State of the Art, Current Trends and Challenges* `(https://www.researchgate.net/publication/319164243_Natural_Language_Processing_State_of_The_Art_Current_Trends_and_Challenges)`, 
+
 ## Methods
 
 ### Method Overview
