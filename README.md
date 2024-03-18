@@ -64,7 +64,9 @@ TODO: The result of your work will be the delivery of some type of artifact whic
 
 * The user will first cd into the directory `Mouseion/src.`
 * The user will then run the program via the terminal command `python main.py` or `python3 main.py` depending on their OS or Python version.
-* 
+* The user will be prompted to provide an input, which can consist of a direct phrase, or one or multiple keywords.
+* Once the user has provided an input and hit `Enter` or `Return` on their keyboard, the artifact will then begin to run based on the provided input of a phrase or keywords, and begin to calculate similarity matrix scores on each article with in the corpus relative to the user-provided input, as well as search for the PMID of each article for reference within the PubMed databse.
+* The results are stored within the `sim_matrix_results.json` file, with each entry of data corresponding to an article within the corpus. Again, each entry consists of a dictionary containing the user input, the PMID of the article, and the similarity matrix score of each article.
 
 ## Results and Outcomes
 
